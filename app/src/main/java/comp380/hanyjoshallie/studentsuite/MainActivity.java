@@ -1,6 +1,7 @@
 package comp380.hanyjoshallie.studentsuite;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -78,26 +79,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setScreen(Screen _newScreen) {      // TODO: Joshua - Set fragments + FrameLayout on xml
+    public void setScreen(Screen _newScreen) {
         if(_newScreen == screenCurrent) { return; }
 
-        TextView _txt = findViewById(R.id.testTextView);    // _TEST_
-
+        Fragment _newFragment = null;
         screenCurrent = _newScreen;
         switch(_newScreen) {
             case CLOCK:
-                _txt.setText("CLOCK SCREEN");       // _TEST_
+                _newFragment = new ClockFragment();
                 break;
             case CALENDAR:
-                _txt.setText("CALENDAR SCREEN");    // _TEST_
+                _newFragment = new CalendarFragment();
                 break;
             case TASK:
-                _txt.setText("TASK SCREEN");        // _TEST_
+                _newFragment = new TaskFragment();
                 break;
             default:    // NOTES
-                _txt.setText("NOTES SCREEN");       // _TEST_
+                _newFragment = new NoteFragment();
                 break;
         }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, _newFragment).commit();
         setMenu();
     }
 
