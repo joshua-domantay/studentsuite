@@ -40,11 +40,61 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_clock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="64dp"
+        android:contentDescription="@string/fab_clock_desc"
+        android:src="@drawable/ic_test"
+        app:fabSize="mini"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="92dp"
+        android:contentDescription="@string/fab_calendar_desc"
+        android:src="@drawable/ic_test"
+        app:fabSize="mini"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginStart="54dp"
+        android:layout_marginBottom="92dp"
+        android:contentDescription="@string/fab_task_desc"
+        android:src="@drawable/ic_test"
+        app:fabSize="mini"
+        tools:ignore="RedundantDescriptionCheck,RedundantDescriptionCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginStart="140dp"
+        android:layout_marginBottom="64dp"
+        android:contentDescription="@string/fab_note_desc"
+        android:src="@drawable/ic_test"
+        app:fabSize="mini"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/fab_home_desc"
         android:src="@drawable/ic_home"
-        android:contentDescription="@string/fab_content_description"
-        app:layout_anchor="@id/bottomAppBar" />
+        app:fabSize="normal"
+        app:layout_anchor="@id/bottomAppBar"
+        tools:ignore="RedundantDescriptionCheck" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
