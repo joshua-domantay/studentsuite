@@ -13,6 +13,7 @@
         android:layout_height="match_parent" >
 
         <TextView
+            android:id="@+id/testTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -35,7 +36,6 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
             android:paddingHorizontal="16dp"
-            app:menu="@menu/bottom_nav_menu_clock"
             android:background="@android:color/transparent" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -44,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_home"
+        android:contentDescription="@string/fab_content_description"
         app:layout_anchor="@id/bottomAppBar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
