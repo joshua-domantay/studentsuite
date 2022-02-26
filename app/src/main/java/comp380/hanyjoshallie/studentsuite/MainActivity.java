@@ -103,31 +103,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setNavButtons() {
-        FloatingActionButton _fab;
+        findViewById(R.id.fab_home).setOnClickListener((View v) -> showNavMenu(!showNavMenuOn));    // Home menu button
 
-        // Home menu button
-        _fab = findViewById(R.id.fab_home);
-        _fab.setOnClickListener((View v) -> showNavMenu(!showNavMenuOn));
+        setNavButtonsH(R.id.fab_clock, Screen.CLOCK, 0);        // Clock menu button
+        setNavButtonsH(R.id.fab_calendar, Screen.CALENDAR, 1);  // Calendar menu button
+        setNavButtonsH(R.id.fab_task, Screen.TASK, 2);          // Task menu button
+        setNavButtonsH(R.id.fab_note, Screen.NOTE, 3);          // Note menu button
+    }
 
-        // Clock menu button
-        _fab = findViewById(R.id.fab_clock);
-        _fab.setOnClickListener((View v) -> setScreen(Screen.CLOCK));
-        fabMenus[0] = _fab;
-
-        // Calendar menu button
-        _fab = findViewById(R.id.fab_calendar);
-        _fab.setOnClickListener((View v) -> setScreen(Screen.CALENDAR));
-        fabMenus[1] = _fab;
-
-        // Task menu button
-        _fab = findViewById(R.id.fab_task);
-        _fab.setOnClickListener((View v) -> setScreen(Screen.TASK));
-        fabMenus[2] = _fab;
-
-        // Note menu button
-        _fab = findViewById(R.id.fab_note);
-        _fab.setOnClickListener((View v) -> setScreen(Screen.NOTE));
-        fabMenus[3] = _fab;
+    private void setNavButtonsH(int _id, Screen _newScreen, int _index) {
+        FloatingActionButton _fab = findViewById(_id);
+        _fab.setOnClickListener((View v) -> setScreen(_newScreen));
+        fabMenus[_index] = _fab;
     }
 
     private void showNavMenu(boolean _on) {
