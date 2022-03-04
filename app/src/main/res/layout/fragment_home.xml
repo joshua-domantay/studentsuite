@@ -26,6 +26,7 @@
             android:layout_marginHorizontal="80dp">
 
             <Button
+                android:id="@+id/homeAlarmBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -36,6 +37,7 @@
                 style="?android:attr/borderlessButtonStyle" />
 
             <Button
+                android:id="@+id/homeCalendarBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
@@ -46,6 +48,7 @@
                 style="?android:attr/borderlessButtonStyle" />
 
             <Button
+                android:id="@+id/homeTaskBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
@@ -56,6 +59,7 @@
                 style="?android:attr/borderlessButtonStyle" />
 
             <Button
+                android:id="@+id/homeNoteBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

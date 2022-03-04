@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavView;
     private Menu navMenu;
     private Screen screenCurrent;
-    private boolean homeScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Assigning variables
         bottomNavView = findViewById(R.id.bottomNavView);
-        bottomNavView.setSelectedItemId(R.id.menuInvisible);    // Select invisible MenuItem for HOME screen
+        setNavMenuSelected(R.id.menuInvisible);     // Select invisible MenuItem for HOME screen
         navMenu = bottomNavView.getMenu();
 
         if(getSupportActionBar() != null) { this.getSupportActionBar().hide(); }    // Hide action bar above app
@@ -33,32 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setNavMenuOnClick();
     }
 
-    public void setScreen(Screen _newScreen) {
-        if(_newScreen == screenCurrent) { return; }
-
-        Fragment _newFragment;
-        screenCurrent = _newScreen;
-        switch(_newScreen) {
-            case HOME:
-                _newFragment = new HomeFragment();
-                break;
-            case ALARM:
-                _newFragment = new AlarmFragment();
-                break;
-            case CALENDAR:
-                _newFragment = new CalendarFragment();
-                break;
-            case TASK:
-                _newFragment = new TaskFragment();
-                break;
-            default:    // NOTES
-                _newFragment = new NoteFragment();
-                break;
-        }
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, _newFragment).commit();
-    }
-
-    public void setNavMenuOnClick() {
+    private void setNavMenuOnClick() {
         bottomNavView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menuAlarm:
@@ -75,5 +49,33 @@ public class MainActivity extends AppCompatActivity {
                     return true;
             }
         });
+    }
+
+    // Only used once for HOME screen (HomeFragment)
+    public void setNavMenuSelected(int _id) { bottomNavView.setSelectedItemId(_id); }
+
+    public void setScreen(Screen _newScreen) {
+        if(_newScreen == screenCurrent) { return; }
+
+        Fragment _newFragment;
+        screenCurrent = _newScreen;
+        switch(_newScreen) {
+            case HOME:
+                _newFragment = new HomeFragment(this);
+                break;
+            case ALARM:
+                _newFragment = new AlarmFragment();
+                break;
+            case CALENDAR:
+                _newFragment = new CalendarFragment();
+                break;
+            case TASK:
+                _newFragment = new TaskFragment();
+                break;
+            default:    // NOTES
+                _newFragment = new NoteFragment();
+                break;
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, _newFragment).commit();
     }
 }
