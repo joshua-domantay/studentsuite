@@ -1,10 +1,6 @@
 <resources>
     <string name="app_name">StudentSuite</string>
-    <string name="fab_home_desc">Home menu button</string>
-    <string name="fab_clock_desc">Clock menu button</string>
-    <string name="fab_calendar_desc">Calendar menu button</string>
-    <string name="fab_task_desc">Task menu button</string>
-    <string name="fab_note_desc">Note menu button</string>
+    <string name="app_name_spaced">Student Suite</string>
 
     <string name="alarm">Alarm</string>
     <string name="timer">Timer</string>
@@ -13,4 +9,10 @@
     <string name="note">Notes</string>
     <string name="monthly_view">Monthly View</string>
     <string name="list_view">List View</string>
+
+    <!-- Home Screen values -->
+    <string name="setAlarm">Set an Alarm</string>
+    <string name="viewCalendar">View Calendar</string>
+    <string name="checkTask">Check To-Do list</string>
+    <string name="addNote">Add notes</string>
 </resources>

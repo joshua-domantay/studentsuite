@@ -1,6 +1,7 @@
 package comp380.hanyjoshallie.studentsuite;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavView;
     private Menu navMenu;
     private Screen screenCurrent;
+    private boolean homeScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,22 +22,26 @@ public class MainActivity extends AppCompatActivity {
 
         // Assigning variables
         bottomNavView = findViewById(R.id.bottomNavView);
+        bottomNavView.setSelectedItemId(R.id.menuInvisible);    // Select invisible MenuItem for HOME screen
         navMenu = bottomNavView.getMenu();
 
         if(getSupportActionBar() != null) { this.getSupportActionBar().hide(); }    // Hide action bar above app
 
         //bottomNavView.setBackground(null);  // Remove background of bottom navigation view
 
-        setScreen(Screen.ALARM);    // Set default screen on launch would be CLOCK
+        setScreen(Screen.HOME);    // Set default screen on launch as HOME Screen
         setNavMenuOnClick();
     }
 
     public void setScreen(Screen _newScreen) {
         if(_newScreen == screenCurrent) { return; }
 
-        Fragment _newFragment = null;
+        Fragment _newFragment;
         screenCurrent = _newScreen;
         switch(_newScreen) {
+            case HOME:
+                _newFragment = new HomeFragment();
+                break;
             case ALARM:
                 _newFragment = new AlarmFragment();
                 break;
@@ -49,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 _newFragment = new NoteFragment();
                 break;
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, _newFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, _newFragment).commit();
     }
 
     public void setNavMenuOnClick() {
