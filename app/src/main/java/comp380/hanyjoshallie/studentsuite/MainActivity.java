@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 _newFragment = new TaskFragment();
                 break;
             default:    // NOTES
-                _newFragment = new NoteFragment();
+                _newFragment = new NoteFragment(this);
                 break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, _newFragment).commit();
