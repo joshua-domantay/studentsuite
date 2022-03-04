@@ -8,6 +8,9 @@
 
     <string name="alarm">Alarm</string>
     <string name="timer">Timer</string>
+    <string name="calendar">Calendar</string>
+    <string name="task">To-Do List</string>
+    <string name="note">Notes</string>
     <string name="monthly_view">Monthly View</string>
     <string name="list_view">List View</string>
 </resources>
