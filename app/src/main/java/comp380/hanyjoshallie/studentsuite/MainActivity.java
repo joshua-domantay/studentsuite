@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+// Saving old navigation menu
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavView;
     private Menu navMenu;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setMenu() {
-        MenuItem _item;         // TODO: Joshua - Make each button do specific things (Change current screen to the another screen)
+        MenuItem _item;
         navMenu.clear();
 
         showNavMenu(false);
