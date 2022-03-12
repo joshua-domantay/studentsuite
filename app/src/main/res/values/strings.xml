@@ -15,4 +15,7 @@
     <string name="viewCalendar">View Calendar</string>
     <string name="checkTask">Check To-Do list</string>
     <string name="addNote">Add notes</string>
+
+    <!-- Alarm Screen values -->
+    <string name="addAlarm">Add Alarm</string>
 </resources>
