@@ -18,4 +18,13 @@
 
     <!-- Alarm Screen values -->
     <string name="addAlarm">Add Alarm</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
+    <string name="alarmSun">Sun</string>
+    <string name="alarmMon">Mon</string>
+    <string name="alarmTue">Tue</string>
+    <string name="alarmWed">Wed</string>
+    <string name="alarmThur">Thu</string>
+    <string name="alarmFri">Fri</string>
+    <string name="alarmSat">Sat</string>
 </resources>
