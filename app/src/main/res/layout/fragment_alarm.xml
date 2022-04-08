@@ -7,7 +7,7 @@
     <LinearLayout
         android:id="@+id/alarmLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical" >
 
         <TimePicker
@@ -135,4 +135,10 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/alarmDefaultCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 </RelativeLayout>

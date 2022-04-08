@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 public class AlarmFragment extends Fragment {
+    private View v;
     private TimePicker timePicker;
     private LinearLayout linearLayout;
     private AlarmManager manager;
@@ -27,17 +28,17 @@ public class AlarmFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View _v = inflater.inflate(R.layout.fragment_alarm, container, false);
+        v = inflater.inflate(R.layout.fragment_alarm, container, false);
 
-        timePicker = _v.findViewById(R.id.alarmTimePicker);
-        linearLayout = _v.findViewById(R.id.alarmLinearLayout);
+        timePicker = v.findViewById(R.id.alarmTimePicker);
+        linearLayout = v.findViewById(R.id.alarmLinearLayout);
         // manager = getSystemService(ALARM_SERVICE);
-        setAddAlarmBtn(_v);
-        return _v;
+        setAddAlarmBtn();
+        return v;
     }
 
-    private void setAddAlarmBtn(View _v) {
-        Button _addAlarmBtn = _v.findViewById(R.id.addAlarmBtn);
+    private void setAddAlarmBtn() {
+        Button _addAlarmBtn = v.findViewById(R.id.addAlarmBtn);
         _addAlarmBtn.setOnClickListener(item -> {
             addAlarmToList(timePicker.getHour(), timePicker.getMinute());
         });
@@ -74,13 +75,16 @@ public class AlarmFragment extends Fragment {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
+        // LinearLayout parent
         LinearLayout _linearParent = new LinearLayout(getContext());
         _linearParent.setLayoutParams(_matchWrap);
         _linearParent.setOrientation(LinearLayout.VERTICAL);
 
+        // RelativeLayout for time TextView, delete ImageButton, and on/off ToggleButton
         RelativeLayout _timeAndButtons = new RelativeLayout(getContext());
         _timeAndButtons.setLayoutParams(_matchWrap);
 
+        // Time TextView
         TextView _timeTV = new TextView(getContext());
         RelativeLayout.LayoutParams _timeTVParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -92,31 +96,35 @@ public class AlarmFragment extends Fragment {
         _timeTV.setText(_timeString);
         _timeTV.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
         _timeTV.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-        _timeAndButtons.addView(_timeTV);
+        _timeAndButtons.addView(_timeTV);       // Add TextView to RelativeLayout
 
+        // LinearLayout for delete and on/off buttons
         LinearLayout _delToggleButtons = new LinearLayout(getContext());
         RelativeLayout.LayoutParams _delToggleButtonsParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
         );
         _delToggleButtonsParams.addRule(RelativeLayout.CENTER_VERTICAL);
         _delToggleButtonsParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         _delToggleButtonsParams.setMargins(0, 0, dpToPix(10), 0);
+        _delToggleButtons.setOrientation(LinearLayout.HORIZONTAL);
         _delToggleButtons.setLayoutParams(_delToggleButtonsParams);
-        _timeAndButtons.addView(_delToggleButtons);
 
+        // Delete button
         ImageButton _delBtn = new ImageButton(getContext());
         _delBtn.setLayoutParams(_wrapWrap);
         _delBtn.setImageResource(R.drawable.ic_test);
-        _timeAndButtons.addView(_delBtn);
+        _delToggleButtons.addView(_delBtn);
 
+        // On/Off alarm button
         ToggleButton _onOffBtn = new ToggleButton(getContext());
         _onOffBtn.setLayoutParams(_wrapWrap);
-        _timeAndButtons.addView(_onOffBtn);
+        _delToggleButtons.addView(_onOffBtn);
 
-        _linearParent.addView(_timeAndButtons);
+        _timeAndButtons.addView(_delToggleButtons);     // Add RelativeLayout to parent LinearLayout
+        _linearParent.addView(_timeAndButtons);     // Add LinearLayout for buttons to parent LinearLayout
 
-
+        // LinearLayout for CheckBoxes for each day of the week
         LinearLayout _weekButtons = new LinearLayout(getContext());
         _weekButtons.setLayoutParams(_matchWrap);
         _weekButtons.setOrientation(LinearLayout.HORIZONTAL);
@@ -142,9 +150,9 @@ public class AlarmFragment extends Fragment {
         CheckBox _sat = createCheckBox(R.string.alarmSat, _weekButtons);
         // onClick
 
-        _linearParent.addView(_weekButtons);
+        _linearParent.addView(_weekButtons);        // Add LinearLayout of CheckBoxes to parent LinearLayout
 
-        linearLayout.addView(_linearParent);
+        linearLayout.addView(_linearParent);        // Add LinearLayout parent to View LinearLayout
     }
 
     private String timeToStr(int _x) {
@@ -172,6 +180,7 @@ public class AlarmFragment extends Fragment {
         _cb.setLayoutParams(_wrapWrap);
         _cb.setText(_str);
         _cb.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+        _cb.setButtonDrawable(((CheckBox) v.findViewById(R.id.alarmDefaultCheckBox)).getButtonDrawable());
         _parent.addView(_cb);
         return _cb;
     }
