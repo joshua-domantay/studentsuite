@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -39,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
                     setScreen(Screen.ALARM);
                     return true;
                 case R.id.menuCalendar:
-                    setScreen(Screen.CALENDAR);
+                    //setScreen(Screen.CALENDAR);
+                    Intent intent = new Intent(this, CalendarActivity.class);
+                    startActivity(intent);
                     return true;
                 case R.id.menuTask:
                     setScreen(Screen.TASK);
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 _newFragment = new TaskFragment();
                 break;
             default:    // NOTES
-                _newFragment = new NoteFragment();
+                _newFragment = new NoteFragment(this);
                 break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, _newFragment).commit();
