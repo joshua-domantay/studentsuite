@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     tools:context=".NewEventFragment"
     android:orientation="vertical"
-    android:background="@color/purple_200"
+    android:background="@color/black"
     >
 
     <!-- TODO: Update blank fragment layout -->

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/teal_200"
+    android:background="@color/black"
     android:orientation="vertical"
     android:scrollbars="vertical">
 
@@ -14,11 +14,6 @@
         android:textAlignment="center"
         android:textColor="@color/black" />
 
-    <!--    <CalendarView-->
-    <!--        android:id="@+id/calendarView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content" />-->
-
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
@@ -28,7 +23,8 @@
         android:id="@+id/buttonNewEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Event" />
+        android:text="New"
+        android:visibility="gone" />
 
     <!--    <ListView-->
     <!--        android:layout_width="match_parent"-->
@@ -38,7 +34,8 @@
     <EditText
         android:id="@+id/editTextCalendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <ListView
         android:id="@+id/listViewCalendar"
