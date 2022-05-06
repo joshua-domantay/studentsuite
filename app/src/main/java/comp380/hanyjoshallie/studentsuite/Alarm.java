@@ -14,14 +14,15 @@ public class Alarm {
         alarmID = _alarmID;
     }
 
-    public void switchOff() { layoutSwitch.setChecked(false); }
-    public boolean switchIsChecked() { return layoutSwitch.isChecked(); }
+    // public void switchOff() { layoutSwitch.setChecked(false); }
+    // public boolean switchIsChecked() { return layoutSwitch.isChecked(); }
 
     // Getters and Setters
     public int getHour() { return hour; }
     public int getMinute() { return minute; }
     public int getAlarmID() { return alarmID; }
     public LinearLayout getLayout() { return layout; }
+    public Switch getLayoutSwitch() { return layoutSwitch; }
 
     public void setLayout(LinearLayout _layout) { layout = _layout; }
     public void setLayoutSwitch(Switch _switch) { layoutSwitch = _switch; }

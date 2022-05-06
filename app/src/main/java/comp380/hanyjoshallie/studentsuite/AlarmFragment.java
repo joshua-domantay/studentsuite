@@ -136,7 +136,7 @@ public class AlarmFragment extends Fragment {
         );
         _delToggleButtonsParams.addRule(RelativeLayout.CENTER_VERTICAL);
         _delToggleButtonsParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        _delToggleButtonsParams.setMargins(0, 0, dpToPix(15), 0);
+        _delToggleButtonsParams.setMargins(0, 0, dpToPix(10), 0);
         _delToggleButtons.setOrientation(LinearLayout.HORIZONTAL);
         _delToggleButtons.setLayoutParams(_delToggleButtonsParams);
 
@@ -146,7 +146,7 @@ public class AlarmFragment extends Fragment {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        _wrapWrapDel.setMargins(0, 0, dpToPix(5), 0);
+        _wrapWrapDel.setMargins(0, 0, dpToPix(10), 0);
         _delBtn.setLayoutParams(_wrapWrapDel);
         _delBtn.setImageResource(R.drawable.ic_delete);
         _delBtn.setOnClickListener(item -> {        // Set deletion of alarm from list
@@ -167,8 +167,9 @@ public class AlarmFragment extends Fragment {
                 cancelAlarm();      // Cancel alarm regardless
                 if(b) {
                     for(int i = 0; i < alarmList.size(); i++) {
-                        alarmList.get(i).switchOff();
+                        alarmList.get(i).getLayoutSwitch().setChecked(false);
                     }
+                    _alarm.getLayoutSwitch().setChecked(true);
                     setAlarm(_alarm);
                 }
             }
@@ -188,7 +189,7 @@ public class AlarmFragment extends Fragment {
     private void deleteAlarmFromList(int _alarmID) {
         for(int i = 0; i < alarmList.size(); i++) {
             if(alarmList.get(i).getAlarmID() == _alarmID) {
-                if(alarmList.get(i).switchIsChecked()) { cancelAlarm(); }
+                if(alarmList.get(i).getLayoutSwitch().isChecked()) { cancelAlarm(); }
                 linearLayout.removeView(alarmList.get(i).getLayout());
                 alarmList.remove(i);
                 break;
