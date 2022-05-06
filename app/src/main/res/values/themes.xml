@@ -17,4 +17,10 @@
     <style name="BottomAppBar">
         <item name="materialThemeOverlay">@color/white</item>
     </style>
+
+    <style name="AlarmTimePicker">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColorPrimary">@color/black</item>       <!-- Font color -->
+        <item name="colorControlNormal">@color/black</item>     <!-- Divider color -->
+    </style>
 </resources>
