@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     setScreen(Screen.ALARM);
                     return true;
                 case R.id.menuCalendar:
-                    //setScreen(Screen.CALENDAR);
-                    Intent intent = new Intent(this, CalendarActivity.class);
-                    startActivity(intent);
+                    setScreen(Screen.CALENDAR);
                     return true;
                 case R.id.menuTask:
                     setScreen(Screen.TASK);
@@ -70,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 _newFragment = new AlarmFragment();
                 break;
             case CALENDAR:
-                _newFragment = new CalendarFragment();
-                break;
+                //_newFragment = new CalendarFragment();
+                Intent intent = new Intent(this, CalendarActivity.class);
+                startActivity(intent);
+                return;
             case TASK:
                 _newFragment = new TaskFragment();
                 break;
