@@ -14,7 +14,8 @@ public class Alarm {
         alarmID = _alarmID;
     }
 
-    public void switchOff() { }
+    public void switchOff() { layoutSwitch.setChecked(false); }
+    public boolean switchIsChecked() { return layoutSwitch.isChecked(); }
 
     // Getters and Setters
     public int getHour() { return hour; }

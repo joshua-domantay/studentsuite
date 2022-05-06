@@ -1,6 +1,10 @@
 package comp380.hanyjoshallie.studentsuite;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -8,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -72,6 +77,7 @@ public class AlarmFragment extends Fragment {
         int _hour = 0, _period = R.string.am;
         if(_alarm.getHour() < 12) {
             _period = R.string.am;
+            _hour = _alarm.getHour();
             if(_alarm.getHour() <= 0) { _hour = 12; }
         } else {
             _period = R.string.pm;
@@ -145,8 +151,6 @@ public class AlarmFragment extends Fragment {
         _delBtn.setImageResource(R.drawable.ic_delete);
         _delBtn.setOnClickListener(item -> {        // Set deletion of alarm from list
             deleteAlarmFromList(_alarm.getAlarmID());
-
-            _timeTV.setText(" " + _alarm.getAlarmID());
         });
         _delToggleButtons.addView(_delBtn);
 
@@ -157,6 +161,18 @@ public class AlarmFragment extends Fragment {
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
         _onOffSwitch.setLayoutParams(_switchParams);
+        _onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                cancelAlarm();      // Cancel alarm regardless
+                if(b) {
+                    for(int i = 0; i < alarmList.size(); i++) {
+                        alarmList.get(i).switchOff();
+                    }
+                    setAlarm(_alarm);
+                }
+            }
+        });
         _delToggleButtons.addView(_onOffSwitch);
 
         _timeAndButtons.addView(_delToggleButtons);     // Add RelativeLayout to parent LinearLayout
@@ -172,12 +188,35 @@ public class AlarmFragment extends Fragment {
     private void deleteAlarmFromList(int _alarmID) {
         for(int i = 0; i < alarmList.size(); i++) {
             if(alarmList.get(i).getAlarmID() == _alarmID) {
-                // TODO: Check if alarm is active or not
+                if(alarmList.get(i).switchIsChecked()) { cancelAlarm(); }
                 linearLayout.removeView(alarmList.get(i).getLayout());
                 alarmList.remove(i);
                 break;
             }
         }
+    }
+
+    private void cancelAlarm() {
+        AlarmManager _alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent _intent = new Intent(getActivity(), AlarmReceiver.class);
+        PendingIntent _pIntent = PendingIntent.getBroadcast(getActivity(), 1, _intent, 0);
+        _alarmManager.cancel(_pIntent);
+    }
+
+    private void setAlarm(Alarm _alarm) {
+        Calendar _c = Calendar.getInstance();
+        _c.set(Calendar.HOUR_OF_DAY, _alarm.getHour());
+        _c.set(Calendar.MINUTE, _alarm.getMinute());
+        _c.set(Calendar.SECOND, 0);
+        startAlarm(_c);
+    }
+
+    private void startAlarm(Calendar _c) {
+        AlarmManager _alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent _intent = new Intent(getActivity(), AlarmReceiver.class);
+        PendingIntent _pIntent = PendingIntent.getBroadcast(getActivity(), 1, _intent, 0);
+        if (_c.before(Calendar.getInstance())) { _c.add(Calendar.DATE, 1); }
+        _alarmManager.setExact(AlarmManager.RTC_WAKEUP, _c.getTimeInMillis(), _pIntent);
     }
 
     private String timeToStr(int _x) {
