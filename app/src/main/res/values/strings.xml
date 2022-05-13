@@ -28,6 +28,15 @@
     <string name="alarmFri">Fri</string>
     <string name="alarmSat">Sat</string>
 
+    <!-- Calendar Screen values -->
+    <string name="addEvent">Add Event</string>
+    <string name="addEventHere">Add Event Here</string>
+    <string name="saveEvent">Save Event</string>
+
+    <!-- Note Screen values -->
+    <string name="addNewNote">Add new note</string>
+    <string name="typeNote">Type your notes here</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

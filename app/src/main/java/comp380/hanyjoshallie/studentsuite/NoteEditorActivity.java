@@ -20,6 +20,8 @@ public class NoteEditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_editor);
 
+        if(getSupportActionBar() != null) { this.getSupportActionBar().hide(); }    // Hide action bar above app
+
         EditText editText = findViewById(R.id.editText);
 
         // Fetch data that is passed from NoteFragment

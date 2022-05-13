@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/mainBackground" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,9 @@
             android:layout_marginHorizontal="50dp"
             android:paddingVertical="10dp"
             android:text="@string/addAlarm"
-            android:textSize="16sp" />
+            android:textSize="20sp"
+            android:textColor="@color/txtColorIn"
+            android:backgroundTint="@color/btnColor" />
 
         <LinearLayout
             android:id="@+id/alarmLinearLayout"

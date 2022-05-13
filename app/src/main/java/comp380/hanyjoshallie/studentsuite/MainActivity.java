@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.menuCalendar:
                     setScreen(Screen.CALENDAR);
                     return true;
+                /*
                 case R.id.menuTask:
                     setScreen(Screen.TASK);
                     return true;
+                */
                 default:
                     setScreen(Screen.NOTE);
                     return true;

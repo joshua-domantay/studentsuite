@@ -7,5 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bottomNavViewColor">#999999</color>
+
+    <!-- App colors -->
+    <color name="mainBackground">#F0F7F4</color>
+    <color name="bottomNavViewColor">#3C493F</color>
+    <color name="btnColor">#7E8D85</color>
+    <color name="txtColorIn">#FFFFFF</color>
+    <color name="txtColorOut">#3C493F</color>
+    <color name="bottomNavViewMenuColor">#B3BFB8</color>
+    <color name="special">#A2E3C4</color>
 </resources>

@@ -6,21 +6,37 @@
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/special</item>
+        <item name="colorSecondaryVariant">@color/special</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-    </style>
-
-    <style name="BottomAppBar">
-        <item name="materialThemeOverlay">@color/white</item>
+        <item name="android:textColorHint">@color/txtColorOut</item>
     </style>
 
     <style name="AlarmTimePicker">
         <item name="android:textSize">20sp</item>
-        <item name="android:textColorPrimary">@color/black</item>       <!-- Font color -->
-        <item name="colorControlNormal">@color/black</item>     <!-- Divider color -->
+        <item name="android:textColor">@color/txtColorOut</item>
+        <item name="android:textColorPrimary">@color/txtColorOut</item>       <!-- Font color -->
+        <item name="colorControlNormal">@color/txtColorOut</item>     <!-- Divider color -->
+    </style>
+
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/special</item>
+        <item name="colorPrimary">@color/txtColorOut</item>
+        <item name="android:textColorPrimary">@color/txtColorOut</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/txtColorOut</item>
+        <item name="android:weekNumberColor">@color/txtColorOut</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/txtColorOut</item>
+        <item name="android:textSize">20sp</item>
     </style>
 </resources>

@@ -2,19 +2,23 @@
     <!-- Base application theme. -->
     <style name="Theme.StudentSuite" parent="Theme.MaterialComponents">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/special</item>
+        <item name="colorSecondaryVariant">@color/special</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:textColorHint">@color/txtColorOut</item>
     </style>
 
-    <style name="BottomAppBar">
-        <item name="materialThemeOverlay">@color/white</item>
+    <style name="AlarmTimePicker">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/txtColorOut</item>
+        <item name="android:textColorPrimary">@color/txtColorOut</item>       <!-- Font color -->
+        <item name="colorControlNormal">@color/txtColorOut</item>     <!-- Divider color -->
     </style>
 </resources>

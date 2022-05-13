@@ -25,6 +25,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        if(getSupportActionBar() != null) { this.getSupportActionBar().hide(); }    // Hide action bar above app
+
         // ----- To send data between fragments -----:
         fragmentA = new CalendarFragment();
         fragmentB = new NewEventFragment();

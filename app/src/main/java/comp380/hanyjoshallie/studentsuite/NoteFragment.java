@@ -51,7 +51,7 @@ public class NoteFragment extends Fragment {
         }
 
         // Using custom listView Provided by Android Studio
-        arrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_expandable_list_item_1, notes);
+        arrayAdapter = new ArrayAdapter(getActivity(), R.layout.note_list_item, R.id.noteTextView, notes);
 
         listView.setAdapter(arrayAdapter);
 

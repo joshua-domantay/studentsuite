@@ -27,10 +27,12 @@ public class HomeFragment extends Fragment {
             main.setScreen(Screen.CALENDAR);
             main.setNavMenuSelected(R.id.menuCalendar);
         });
+        /*
         _v.findViewById(R.id.homeTaskBtn).setOnClickListener(item -> {
             main.setScreen(Screen.TASK);
             main.setNavMenuSelected(R.id.menuTask);
         });
+        */
         _v.findViewById(R.id.homeNoteBtn).setOnClickListener(item -> {
             main.setScreen(Screen.NOTE);
             main.setNavMenuSelected(R.id.menuNote);

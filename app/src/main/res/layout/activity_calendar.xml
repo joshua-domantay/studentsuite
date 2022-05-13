@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".CalendarActivity"
     android:orientation="vertical"
-    android:id="@+id/container_calendar">
+    android:id="@+id/container_calendar"
+    android:background="@color/mainBackground" >
 
     <FrameLayout
         android:id="@+id/container_b"

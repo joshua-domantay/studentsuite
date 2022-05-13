@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteEditorActivity">
+    tools:context=".NoteEditorActivity"
+    android:background="@color/mainBackground" >
 
     <!--Adding Edit Text To add data to List View-->
     <EditText
@@ -13,8 +14,9 @@
         android:layout_height="0dp"
         android:ems="10"
         android:gravity="top|left"
-        android:hint="Type your note here"
+        android:hint="@string/typeNote"
         android:inputType="textMultiLine"
+        android:textColor="@color/txtColorOut"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

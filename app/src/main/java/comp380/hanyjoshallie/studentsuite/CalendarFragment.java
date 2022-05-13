@@ -52,7 +52,7 @@ public class CalendarFragment extends Fragment {
         eventsArrayList = new ArrayList<String>();
         listViewCalendar = (ListView) view.findViewById(R.id.listViewCalendar);
         listViewAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, eventsArrayList);
+                R.layout.note_list_item, R.id.noteTextView, eventsArrayList);
         listViewCalendar.setAdapter(listViewAdapter);
         // -------------------------------
 

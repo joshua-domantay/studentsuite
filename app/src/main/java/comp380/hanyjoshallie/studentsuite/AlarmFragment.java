@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -23,6 +24,7 @@ import android.widget.TimePicker;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -192,7 +194,7 @@ public class AlarmFragment extends Fragment {
         _timeTV.setLayoutParams(_timeTVParams);
         _timeTV.setText(_timeString);
         _timeTV.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
-        _timeTV.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+        _timeTV.setTextColor(ContextCompat.getColor(getContext(), R.color.txtColorOut));
         _timeAndButtons.addView(_timeTV);       // Add TextView to RelativeLayout
 
         // LinearLayout for delete and on/off buttons
@@ -216,6 +218,10 @@ public class AlarmFragment extends Fragment {
         _wrapWrapDel.setMargins(0, 0, dpToPix(10), 0);
         _delBtn.setLayoutParams(_wrapWrapDel);
         _delBtn.setImageResource(R.drawable.ic_delete);
+        Drawable _delBtnDrawable = _delBtn.getBackground();
+        _delBtnDrawable = DrawableCompat.wrap(_delBtnDrawable);
+        DrawableCompat.setTint(_delBtnDrawable, ContextCompat.getColor(getContext(), R.color.btnColor));
+        _delBtn.setBackground(_delBtnDrawable);
         _delBtn.setOnClickListener(item -> {        // Set deletion of alarm from list
             deleteAlarmFromList(_alarm.getAlarmID());
         });

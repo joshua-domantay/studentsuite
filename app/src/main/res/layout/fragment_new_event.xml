@@ -5,30 +5,41 @@
     android:layout_height="wrap_content"
     tools:context=".NewEventFragment"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@color/mainBackground"
     >
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Event"
-        android:textAlignment="center"/>
+        android:layout_marginTop="10dp"
+        android:text="@string/addEvent"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/txtColorOut" />
 
     <EditText
         android:id="@+id/eventEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Add event here"
-        android:inputType="textMultiLine" />
+        android:hint="@string/addEventHere"
+        android:inputType="textMultiLine"
+        android:textColor="@color/txtColorOut"/>
 
     <Button
         android:id="@+id/submitEventButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:layout_marginHorizontal="20dp"
+        android:paddingVertical="8dp"
+        android:text="@string/saveEvent"
+        android:textSize="22sp"
+        android:textColor="@color/txtColorIn"
+        android:backgroundTint="@color/btnColor" />
 
 
 </LinearLayout>
