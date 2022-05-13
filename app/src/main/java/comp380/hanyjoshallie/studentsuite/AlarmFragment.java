@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -28,49 +29,115 @@ import java.util.ArrayList;
 
 public class AlarmFragment extends Fragment {
     private View v;
+    private SharedPreferences settings;
+    private SharedPreferences.Editor editor;
     private TimePicker timePicker;
     private LinearLayout linearLayout;
     private ArrayList<Alarm> alarmList;
+    private boolean loaded;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_alarm, container, false);
-        alarmList = new ArrayList<>();
-
+        settings = getContext().getSharedPreferences("comp380.hanyjoshallie.studentsuite.alarmPrefs", 0);
+        editor = settings.edit();
         timePicker = v.findViewById(R.id.alarmTimePicker);
         linearLayout = v.findViewById(R.id.alarmLinearLayout);
+        alarmList = new ArrayList<>();
+        loaded = false;
+
         setAddAlarmBtn();
+        loadAlarms();
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        loadAlarms();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        saveAlarms();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        saveAlarms();
+        super.onDestroyView();
     }
 
     private void setAddAlarmBtn() {
         Button _addAlarmBtn = v.findViewById(R.id.addAlarmBtn);
         _addAlarmBtn.setOnClickListener(item -> {
-            // Acquiring alarmID
-            int _alarmID = Integer.MAX_VALUE;
-            boolean found = false;
-            while(!found) {
-                found = true;
-                for (int i = 0; i < alarmList.size(); i++) {
-                    if(alarmList.get(i).getAlarmID() == _alarmID) {
-                        found = false;
-                        break;
-                    }
-                }
-                if(!found) {
-                    if(_alarmID != Integer.MIN_VALUE) {
-                        _alarmID--;
-                    } else { break; }
+            if(alarmList.size() < 5) {         // HARD LIMIT OF 5 FOR NOW
+                Alarm _newAlarm = new Alarm(timePicker.getHour(), timePicker.getMinute(), -1);
+                boolean _found = getAlarmID(_newAlarm);
+                if(_found) {
+                    alarmList.add(_newAlarm);
+                    addAlarmToListView(_newAlarm);
                 }
             }
-
-            if(found) {
-                Alarm _newAlarm = new Alarm(timePicker.getHour(), timePicker.getMinute(), _alarmID);
-                alarmList.add(_newAlarm);
-                addAlarmToListView(_newAlarm);
-            }
+            saveAlarms();
         });
+    }
+
+    private void saveAlarms() {
+        for(int i = 0; i < 5; i++) {
+            if(i < alarmList.size()) {
+                editor.putInt("alarmNum" + i + "Hour", alarmList.get(i).getHour());
+                editor.putInt("alarmNum" + i + "Min", alarmList.get(i).getMinute());
+            } else {
+                editor.putInt("alarmNum" + i + "Hour", -1);
+                editor.putInt("alarmNum" + i + "Min", -1);
+            }
+        }
+        editor.apply();
+    }
+
+    private void loadAlarms() {
+        if(!loaded) {
+            for (int i = 0; i < 5; i++) {
+                int _hour = settings.getInt("alarmNum" + i + "Hour", -1);
+                if (_hour == -1) {
+                    break;
+                } else {
+                    int _min = settings.getInt("alarmNum" + i + "Min", -1);
+                    Alarm _newAlarm = new Alarm(_hour, _min, -1);
+                    getAlarmID(_newAlarm);
+                    alarmList.add(_newAlarm);
+                    addAlarmToListView(_newAlarm);
+                }
+            }
+            loaded = true;
+        }
+    }
+
+    private boolean getAlarmID(Alarm _alarm) {
+        // Acquiring alarmID
+        int _alarmID = Integer.MAX_VALUE;
+        boolean _found = false;
+        while(!_found) {
+            _found = true;
+            for(int i = 0; i < alarmList.size(); i++) {
+                if(alarmList.get(i).getAlarmID() == _alarmID) {
+                    _found = false;
+                    break;
+                }
+            }
+            if(!_found) {
+                if(_alarmID != Integer.MIN_VALUE) {
+                    _alarmID--;
+                } else {
+                    break;
+                }
+            }
+        }
+        _alarm.setAlarmID(_alarmID);
+        return _found;
     }
 
     private void addAlarmToListView(Alarm _alarm) {
@@ -172,6 +239,7 @@ public class AlarmFragment extends Fragment {
                     _alarm.getLayoutSwitch().setChecked(true);
                     setAlarm(_alarm);
                 }
+                saveAlarms();
             }
         });
         _delToggleButtons.addView(_onOffSwitch);
