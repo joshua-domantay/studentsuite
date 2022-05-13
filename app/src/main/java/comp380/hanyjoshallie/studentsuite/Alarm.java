@@ -24,6 +24,7 @@ public class Alarm {
     public LinearLayout getLayout() { return layout; }
     public Switch getLayoutSwitch() { return layoutSwitch; }
 
+    public void setAlarmID(int _id) { alarmID = _id; }
     public void setLayout(LinearLayout _layout) { layout = _layout; }
     public void setLayoutSwitch(Switch _switch) { layoutSwitch = _switch; }
 }
